@@ -1,0 +1,9 @@
+buildscript {
+    ext {
+        nettyVersion = "4.1.2.Final"
+    }
+}
+
+dependencies {
+    compile("io.netty:netty-codec-mqtt:$nettyVersion")
+}

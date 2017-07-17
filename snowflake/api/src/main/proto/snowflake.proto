@@ -1,0 +1,16 @@
+syntax = "proto3";
+package proto;
+
+option java_package = "com.netstatx.draco.snowflake.api.gen";
+option java_outer_classname = "SnowflakeProtos";
+
+service SnowflakeService {
+	rpc GetUUID(Snowflake.EmptyRequest) returns (Snowflake.UUID) {}
+}
+
+message Snowflake{
+	message EmptyRequest {}
+	message UUID {
+		uint64 uuid =1;
+	}
+}

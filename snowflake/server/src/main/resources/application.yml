@@ -1,0 +1,17 @@
+server:
+  port: 0
+
+snowflake:
+  port: 8982
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: ${LEASE-TTL:30}
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+    metadataMap:
+      snowflake.port: ${snowflake.port}
+  client:
+    service-url:
+      defaultZone: ${DEFAULT-ZONE:http://discovery:8761/eureka/}
+

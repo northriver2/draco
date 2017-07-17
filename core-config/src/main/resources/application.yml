@@ -1,0 +1,20 @@
+server:
+  port: ${PORT:8888}
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: ${LEASE-TTL:30}
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+  client:
+    service-url:
+      defaultZone: ${DEFAULT-ZONE:http://discovery:8761/eureka/}
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://git.coding.net/aluckyapple/draco-config.git
+
+

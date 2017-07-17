@@ -1,0 +1,30 @@
+server:
+  port: ${PORT:7110}
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: ${LEASE-TTL:30}
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+  client:
+    service-url:
+      defaultZone: ${DEFAULT-ZONE:http://discovery:8761/eureka/}
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: ${TIMEOUT:3000}
+

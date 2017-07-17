@@ -1,0 +1,26 @@
+version = "1.0.0-SNAPSHOT"
+
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("$bootGroup:spring-boot-gradle-plugin:$springBootVersion")
+    }
+}
+
+apply plugin: "$bootGroup"
+
+dependencyManagement {
+    imports {
+        mavenBom "$cloudGroup:spring-cloud-dependencies:$springCloudDependenciesVersion"
+    }
+}
+
+dependencies {
+    compile("$bootGroup:spring-boot-starter-web")
+    compile("$bootGroup:spring-boot-starter-undertow")
+    compile("$cloudGroup:spring-cloud-config-server")
+}

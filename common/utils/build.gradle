@@ -1,0 +1,12 @@
+buildscript {
+}
+
+dependencies {
+    compile("com.google.code.findbugs:jsr305:$jsr305Version")
+    compile("joda-time:joda-time:$jodaTimeVersion")
+    compile("commons-codec:commons-codec:$commonsCodecVersion")
+    compile("org.apache.logging.log4j:log4j-api:$log4jVersion")
+    compile("org.apache.logging.log4j:log4j-core:$log4jVersion")
+    compile("org.apache.commons:commons-lang3:$commonsLang3Version")
+    compile("com.google.guava:guava:$guavaVersion")
+}

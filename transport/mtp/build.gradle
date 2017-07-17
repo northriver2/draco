@@ -1,0 +1,6 @@
+buildscript {
+}
+
+dependencies {
+    //compile("com.netstatx.mtp:codec-mtp:1.0.0")
+}

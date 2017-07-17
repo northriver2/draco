@@ -1,0 +1,18 @@
+server:
+  port: 8761
+
+eureka:
+  environment: ${ENV:dev}
+  datacenter: ${DATACENTER:cn-east-1}
+  instance:
+    hostname: ${HOSTNAME:discovery}
+    leaseRenewalIntervalInSeconds: ${LEASE-TTL:30}
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://discovery:${server.port}/eureka/
+
+spring.cloud.config.discovery.enabled: true

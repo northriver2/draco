@@ -1,0 +1,27 @@
+subprojects {
+    apply plugin: "java"
+    apply plugin: "idea"
+    apply plugin: "eclipse"
+    apply plugin: "maven"
+
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = "UTF-8"
+
+    configurations {
+        all*.exclude module: "spring-boot-starter-tomcat"
+        all*.exclude module: "spring-boot-starter-logging"
+    }
+
+    dependencies{
+        compileOnly("org.projectlombok:lombok:$lombokVersion")
+    }
+
+    repositories {
+        mavenLocal()
+        maven {
+            name "Aliyun Maven Repository"
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+        mavenCentral()
+    }
+}
+

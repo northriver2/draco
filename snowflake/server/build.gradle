@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("$bootGroup:spring-boot-gradle-plugin:$springBootVersion")
+    }
+}
+
+apply plugin: "$bootGroup"
+
+dependencyManagement {
+    imports {
+        mavenBom "$cloudGroup:spring-cloud-dependencies:$springCloudDependenciesVersion"
+    }
+}
+
+dependencies {
+    compile project(":common:utils")
+    compile project(":snowflake:api")
+    compile("$bootGroup:spring-boot-starter-web")
+    compile("$bootGroup:spring-boot-starter-undertow")
+    compile("$bootGroup:spring-boot-starter-log4j2")
+    compile("$cloudGroup:spring-cloud-starter-eureka")
+    testCompile("$bootGroup:spring-boot-starter-test")
+}

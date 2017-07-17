@@ -1,0 +1,49 @@
+apply plugin: 'com.google.protobuf'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.0'
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.2.0"
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.4.0'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+    generatedFilesBaseDir = "$projectDir/gen"
+}
+
+clean {
+    delete protobuf.generatedFilesBaseDir
+}
+
+idea {
+    module {
+        sourceDirs += file("${protobuf.generatedFilesBaseDir}/main/java")
+        sourceDirs += file("${protobuf.generatedFilesBaseDir}/main/grpc")
+    }
+}
+
+dependencies {
+    compile("io.grpc:grpc-netty:1.4.0") {
+        exclude group: "io.netty"
+    }
+    // Update netty to 4.1.12.Final to fix java.lang.ClassNotFoundException: jdk.internal.misc.Unsafe
+    compile("io.netty:netty-codec-http2:$nettyVersion")
+    compile("io.netty:netty-handler-proxy:$nettyVersion")
+    compile("io.grpc:grpc-protobuf:1.4.0")
+    compile("io.grpc:grpc-stub:1.4.0")
+}

@@ -1,0 +1,5 @@
+version: latest
+spring:
+  application:
+    name: snowflake
+    version: ${version}
