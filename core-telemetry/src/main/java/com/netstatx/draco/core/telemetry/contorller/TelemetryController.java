@@ -1,6 +1,7 @@
 package com.netstatx.draco.core.telemetry.contorller;
 
-import com.netstatx.draco.core.telemetry.model.Packet;
+import com.netstatx.draco.core.telemetry.data.Packet;
+import com.netstatx.draco.core.telemetry.model.PacketEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

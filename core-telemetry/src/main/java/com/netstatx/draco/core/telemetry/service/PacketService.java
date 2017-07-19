@@ -1,16 +1,16 @@
 package com.netstatx.draco.core.telemetry.service;
 
 
-import com.netstatx.draco.core.telemetry.model.Packet;
+import com.netstatx.draco.core.telemetry.model.PacketEntity;
 
 /**
  * @author wangle<thisiswangle@gmail.com>
  */
 public interface PacketService {
 
-    Packet findPacketById(Long packetId);
+    PacketEntity findPacketById(Long packetId);
 
-    Packet savePacket(Packet packet);
+    PacketEntity savePacket(PacketEntity packetEntity);
 
     void deletePacket(Long packetId);
 }

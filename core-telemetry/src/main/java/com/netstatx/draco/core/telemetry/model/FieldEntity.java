@@ -7,8 +7,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.util.Map;
-
 /**
  * @author wangle<thisiswangle@gmail.com>
  */
@@ -16,16 +14,15 @@ import java.util.Map;
 @Builder
 @ToString
 @EqualsAndHashCode
-public class Packet extends BaseEntity<Packet> {
-    private String packetName;
-    private Integer packetIndex;
-    private String packetKey;
-    private Long productId;
+public class FieldEntity extends BaseEntity<FieldEntity> {
+    private String fieldName;
+    private Integer fieldIndex;
+    private String fieldKey;
+    private String packetId;
     private Status status;
-    private Map<String, Field> fields;
 
     @Override
-    public Packet toData() {
+    public FieldEntity toData() {
         return null;
     }
 

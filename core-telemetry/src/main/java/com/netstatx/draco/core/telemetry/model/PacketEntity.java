@@ -16,15 +16,16 @@ import java.util.Map;
 @Builder
 @ToString
 @EqualsAndHashCode
-public class Field extends BaseEntity<Field> {
-    private String fieldName;
-    private Integer fieldIndex;
-    private String fieldKey;
-    private String packetId;
+public class PacketEntity extends BaseEntity<PacketEntity> {
+    private String packetName;
+    private Integer packetIndex;
+    private String packetKey;
+    private Long productId;
     private Status status;
+    private Map<String, FieldEntity> fields;
 
     @Override
-    public Field toData() {
+    public PacketEntity toData() {
         return null;
     }
 

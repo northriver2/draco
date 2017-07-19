@@ -1,4 +1,4 @@
-package com.netstatx.draco.core.device.dao;
+package com.netstatx.draco.common.data;
 
 import java.util.List;
 
