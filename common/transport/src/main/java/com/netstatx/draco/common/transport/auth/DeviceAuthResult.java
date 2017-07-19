@@ -1,4 +1,4 @@
-package com.netstatx.draco.transport.auth;
+package com.netstatx.draco.common.data.auth;
 
 /**
  * @author wangle<thisiswangle@gmail.com>

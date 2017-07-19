@@ -2,6 +2,7 @@ package com.netstatx.draco.core.device.model;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
@@ -10,7 +11,8 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
-public class Product extends BaseModel {
+@EqualsAndHashCode(callSuper = true)
+public class Product extends BaseEntity {
     private String productName;
     private String productKey;
     private String productSecret;
