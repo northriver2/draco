@@ -1,0 +1,13 @@
+server:
+  port: 7778
+
+eureka:
+  instance:
+    port: ${server.port}
+    leaseRenewalIntervalInSeconds: ${LEASE-TTL:30}
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+  client:
+    service-url:
+      defaultZone: ${DEFAULT-ZONE:http://discovery:8761/eureka/}
+

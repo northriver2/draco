@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class DeviceController extends BaseController {
     @PostMapping(value = "/devices")
-    @ResponseBody
     public Device saveDevice(@RequestBody Device device) {
         device.doPreSave();
         return device;
