@@ -1,3 +1,15 @@
 language: java
+branches:
+  only:
+  - master
 jdk:
   - oraclejdk8
+git:
+  depth: 1
+notifications:
+    slack: netstatx:33tG7o9JMAbpyvn4VQVPDiSE
+env:
+  - MAVEN_REPO='maven { url "http://maven.aliyun.com/nexus/content/groups/public" }'
+before_script:
+ - export JAVA_OPTS="-Xmx256m"
+ - grep -lr '${MAVEN_REPO}'|xargs sed -i 's/${MAVEN_REPO}//g'
