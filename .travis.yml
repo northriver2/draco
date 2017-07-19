@@ -16,4 +16,4 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 before_install:
- - grep -lr 'maven { url "http://maven.aliyun.com/nexus/content/groups/public" }'|xargs sed -i 's/maven { url "http://maven.aliyun.com/nexus/content/groups/public" }//g'
+ - grep -lr 'maven { url "http://maven.aliyun.com/nexus/content/groups/public" }'|xargs sed -i 's/maven { url "http:\/\/maven.aliyun.com\/nexus\/content\/groups\/public" }//g'
