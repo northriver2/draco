@@ -8,9 +8,6 @@ git:
   depth: 1
 notifications:
     slack: netstatx:33tG7o9JMAbpyvn4VQVPDiSE
-env:
-  - MAVEN_REPO='maven { url "http://maven.aliyun.com/nexus/content/groups/public" }'
-  - JAVA_OPTS="-Xmx256m"
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -19,4 +16,4 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 before_install:
- - grep -lr '${MAVEN_REPO}'|xargs sed -i 's/${MAVEN_REPO}//g'
+ - grep -lr 'maven { url "http://maven.aliyun.com/nexus/content/groups/public" }'|xargs sed -i 's/maven { url "http://maven.aliyun.com/nexus/content/groups/public" }//g'
