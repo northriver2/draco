@@ -1,15 +1,15 @@
 package com.netstatx.draco.core.device.service;
 
-import com.netstatx.draco.core.device.model.Device;
+import com.netstatx.draco.core.device.model.DeviceEntity;
 
 /**
  * @author wangle<thisiswangle@gmail.com>
  */
 public interface DeviceService {
 
-    Device findDeviceById(Long deviceId);
+    DeviceEntity findDeviceById(Long deviceId);
 
-    Device saveDevice(Device device);
+    DeviceEntity saveDevice(DeviceEntity deviceEntity);
 
     void deleteDevice(Long deviceId);
 }

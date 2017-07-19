@@ -1,5 +1,6 @@
 rootProject.name = "draco"
 include "common:utils"
+include "common:data"
 include "common:transport"
 include "core-config"
 include "core-discovery"

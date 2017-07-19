@@ -1,5 +1,8 @@
 package com.netstatx.draco.core.device.model;
 
+import com.netstatx.draco.common.data.BaseEntity;
+import com.netstatx.draco.core.device.config.UuidGeneratorConfig;
+import com.netstatx.draco.core.device.data.Product;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,9 +15,19 @@ import lombok.ToString;
 @Builder
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class Product extends BaseEntity {
+public class ProductEntity extends BaseEntity<Product> {
     private String productName;
     private String productKey;
     private String productSecret;
     private String productDescription;
+
+    @Override
+    public Product toData() {
+        return null;
+    }
+
+    @Override
+    public Long generateId() {
+        return UuidGeneratorConfig.getUUID();
+    }
 }

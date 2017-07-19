@@ -1,9 +1,9 @@
 package com.netstatx.draco.core.device.dao;
 
-import com.netstatx.draco.core.device.model.Device;
+import com.netstatx.draco.core.device.model.DeviceEntity;
 
 /**
  * @author wangle<thisiswangle@gmail.com>
  */
-public interface DeviceDao extends Dao<Device>{
+public interface DeviceDao extends Dao<DeviceEntity>{
 }

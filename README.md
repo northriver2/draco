@@ -1,5 +1,6 @@
 # draco
 [![Build Status](https://travis-ci.org/netstatx/draco.svg?branch=master)](https://travis-ci.org/netstatx/draco)
+[![License](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/netstatx/draco/blob/master/LICENSE)
 
 ## Intro
 

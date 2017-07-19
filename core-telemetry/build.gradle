@@ -19,6 +19,7 @@ dependencyManagement {
 
 dependencies {
     compile project(":common:utils")
+    compile project(":common:data")
     compile project(":snowflake:client")
     compile("$bootGroup:spring-boot-starter-web")
     compile("$bootGroup:spring-boot-starter-undertow")

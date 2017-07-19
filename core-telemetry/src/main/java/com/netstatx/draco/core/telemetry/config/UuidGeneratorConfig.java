@@ -1,4 +1,4 @@
-package com.netstatx.draco.core.device.config;
+package com.netstatx.draco.core.telemetry.config;
 
 import com.netstatx.draco.snowflake.client.SnowflakeClient;
 import org.springframework.beans.factory.annotation.Autowired;
