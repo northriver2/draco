@@ -1,13 +1,14 @@
 package com.netstatx.draco.core.telemetry.model;
 
-import com.netstatx.draco.common.data.BaseEntity;
-import com.netstatx.draco.core.telemetry.config.UuidGeneratorConfig;
+import com.datastax.driver.extras.codecs.enums.EnumNameCodec;
+import com.datastax.driver.mapping.annotations.Column;
+import com.datastax.driver.mapping.annotations.PartitionKey;
+import com.datastax.driver.mapping.annotations.Table;
+import com.netstatx.draco.core.telemetry.data.Packet;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
-import java.util.Map;
 
 /**
  * @author wangle<thisiswangle@gmail.com>
@@ -15,26 +16,41 @@ import java.util.Map;
 @Data
 @Builder
 @ToString
-@EqualsAndHashCode
-public class PacketEntity extends BaseEntity<PacketEntity> {
+@EqualsAndHashCode(callSuper = true)
+@Table(name = "packets")
+public class PacketEntity extends BaseUuidEntity<Packet> {
+    @PartitionKey
+    @Column
+    private Long id;
+
+    @Column(name = "packet_name")
     private String packetName;
+
+    @Column(name = "packet_index")
     private Integer packetIndex;
+
+    @Column(name = "packet_key")
     private String packetKey;
+
+    @Column(name = "product_id")
     private Long productId;
+
+    @Column(name = "status", codec = StatusCodec.class)
     private Status status;
-    private Map<String, FieldEntity> fields;
 
     @Override
-    public PacketEntity toData() {
+    public Packet toData() {
         return null;
-    }
-
-    @Override
-    public Long generateId() {
-        return UuidGeneratorConfig.getUUID();
     }
 
     public enum Status {
         ACTIVE, INACTIVE
+    }
+
+    public class StatusCodec extends EnumNameCodec<Status> {
+
+        public StatusCodec() {
+            super(Status.class);
+        }
     }
 }

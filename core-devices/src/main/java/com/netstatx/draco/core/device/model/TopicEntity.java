@@ -1,6 +1,5 @@
 package com.netstatx.draco.core.device.model;
 
-import com.netstatx.draco.common.data.BaseEntity;
 import com.netstatx.draco.core.device.data.Topic;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +14,8 @@ import lombok.ToString;
 @ToString
 @Builder
 @EqualsAndHashCode(callSuper = true)
-public class TopicEntity extends BaseEntity<Topic> {
+public class TopicEntity extends BaseUuidEntity<Topic> {
+    private Long id;
     private Long deviceId;
     private String topicName;
     private Permission permission;

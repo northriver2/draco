@@ -1,6 +1,5 @@
 package com.netstatx.draco.core.device.model;
 
-import com.netstatx.draco.common.data.BaseEntity;
 import com.netstatx.draco.core.device.config.UuidGeneratorConfig;
 import com.netstatx.draco.core.device.data.Device;
 import lombok.Builder;
@@ -15,7 +14,8 @@ import lombok.ToString;
 @Builder
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class DeviceEntity extends BaseEntity<Device> {
+public class DeviceEntity extends BaseUuidEntity<Device> {
+    private Long id;
     private String deviceName;
     private String deviceKey;
     private String deviceSecret;

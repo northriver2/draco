@@ -1,7 +1,9 @@
 package com.netstatx.draco.core.telemetry.model;
 
-import com.netstatx.draco.common.data.BaseEntity;
-import com.netstatx.draco.core.telemetry.config.UuidGeneratorConfig;
+import com.datastax.driver.mapping.annotations.Column;
+import com.datastax.driver.mapping.annotations.PartitionKey;
+import com.datastax.driver.mapping.annotations.Table;
+import com.netstatx.draco.core.telemetry.data.Field;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,25 +15,28 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
-@EqualsAndHashCode
-public class FieldEntity extends BaseEntity<FieldEntity> {
-    private String fieldName;
-    private Integer fieldIndex;
-    private String fieldKey;
+@EqualsAndHashCode(callSuper = true)
+@Table(name = "fields")
+public class FieldEntity extends BaseUuidEntity<Field> {
+    @PartitionKey
+    @Column
+    private Long id;
+
+    @PartitionKey(value = 1)
+    @Column(name = "packet_id")
     private String packetId;
-    private Status status;
+
+    @Column(name = "field_id")
+    private String fieldName;
+
+    @Column(name = "field_index")
+    private Integer fieldIndex;
+
+    @Column(name = "field_key")
+    private String fieldKey;
 
     @Override
-    public FieldEntity toData() {
+    public Field toData() {
         return null;
-    }
-
-    @Override
-    public Long generateId() {
-        return UuidGeneratorConfig.getUUID();
-    }
-
-    public enum Status {
-        ACTIVE, INACTIVE
     }
 }

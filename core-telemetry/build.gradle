@@ -25,5 +25,8 @@ dependencies {
     compile("$bootGroup:spring-boot-starter-undertow")
     compile("$bootGroup:spring-boot-starter-log4j2")
     compile("$cloudGroup:spring-cloud-starter-eureka")
+    compile("com.datastax.cassandra:cassandra-driver-core:$cassandraVersion")
+    compile("com.datastax.cassandra:cassandra-driver-mapping:$cassandraVersion")
+    compile("com.datastax.cassandra:cassandra-driver-extras:$cassandraVersion")
     testCompile("$bootGroup:spring-boot-starter-test")
 }
