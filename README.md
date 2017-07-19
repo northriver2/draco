@@ -1,9 +1,9 @@
-draco
-========
+# draco
+[![Build Status](https://travis-ci.org/netstatx/draco.svg?branch=master)](https://travis-ci.org/netstatx/draco)
 
 ## Intro
 
-* DP-{\d}-{\d+}: 标识将要开发的功能点, DP=Develop Plan
+* DP-{\d}-{\d+}: 表示将要开发的功能点, DP=Develop Plan
 
 
 ## 数据传输服务（transport）
