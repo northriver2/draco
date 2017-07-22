@@ -25,5 +25,10 @@ dependencies {
     compile("$bootGroup:spring-boot-starter-undertow")
     compile("$bootGroup:spring-boot-starter-log4j2")
     compile("$cloudGroup:spring-cloud-starter-eureka")
+    compile("$bootGroup:spring-boot-starter-data-jpa")
+    compile("mysql:mysql-connector-java:5.1.38")
+    compile("com.zaxxer:HikariCP:2.4.6") {
+        exclude module: "slf4j-rest"
+    }
     testCompile("$bootGroup:spring-boot-starter-test")
 }

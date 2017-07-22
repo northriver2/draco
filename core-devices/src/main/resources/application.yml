@@ -11,3 +11,27 @@ eureka:
     service-url:
       defaultZone: ${DEFAULT-ZONE:http://discovery:8761/eureka/}
 
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect:  org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+
+dataSource:
+  driverClassName: com.mysql.jdbc.Driver
+  jdbcUrl: jdbc:mysql://192.168.33.11/draco_devices?useUnicode=true&characterEncoding=UTF-8
+  username: root
+  password: letmein
+  poolName: springHikariCP
+  autoCommit: false
+  minimumIdle: 20
+  maximumPoolSize: 20
+  connectionInitSql: SELECT 1
+  dataSourceProperty:
+    cachePrepStmts: true
+    prepStmtCacheSize: 250
+    prepStmtCacheSqlLimit: 2048
+    useServerPrepStmts: true
