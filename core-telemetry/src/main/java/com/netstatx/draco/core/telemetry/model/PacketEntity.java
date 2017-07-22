@@ -1,6 +1,7 @@
 package com.netstatx.draco.core.telemetry.model;
 
 import com.datastax.driver.extras.codecs.enums.EnumNameCodec;
+import com.datastax.driver.mapping.annotations.ClusteringColumn;
 import com.datastax.driver.mapping.annotations.Column;
 import com.datastax.driver.mapping.annotations.PartitionKey;
 import com.datastax.driver.mapping.annotations.Table;
@@ -19,9 +20,13 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "packets")
 public class PacketEntity extends BaseUuidEntity<Packet> {
-    @PartitionKey
+    @PartitionKey(1)
     @Column
     private Long id;
+
+    @ClusteringColumn(1)
+    @Column(name = "product_id")
+    private Long productId;
 
     @Column(name = "packet_name")
     private String packetName;
@@ -31,9 +36,6 @@ public class PacketEntity extends BaseUuidEntity<Packet> {
 
     @Column(name = "packet_key")
     private String packetKey;
-
-    @Column(name = "product_id")
-    private Long productId;
 
     @Column(name = "status", codec = StatusCodec.class)
     private Status status;
@@ -47,7 +49,7 @@ public class PacketEntity extends BaseUuidEntity<Packet> {
         ACTIVE, INACTIVE
     }
 
-    public class StatusCodec extends EnumNameCodec<Status> {
+    public static class StatusCodec extends EnumNameCodec<Status> {
 
         public StatusCodec() {
             super(Status.class);
