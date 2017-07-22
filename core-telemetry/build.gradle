@@ -25,6 +25,11 @@ dependencies {
     compile("$bootGroup:spring-boot-starter-undertow")
     compile("$bootGroup:spring-boot-starter-log4j2")
     compile("$cloudGroup:spring-cloud-starter-eureka")
+    compile("$bootGroup:spring-boot-starter-data-jpa")
+    compile("mysql:mysql-connector-java:5.1.38")
+    compile("com.zaxxer:HikariCP:2.4.6") {
+        exclude module: "slf4j-rest"
+    }
     compile("com.datastax.cassandra:cassandra-driver-core:$cassandraVersion")
     compile("com.datastax.cassandra:cassandra-driver-mapping:$cassandraVersion")
     compile("com.datastax.cassandra:cassandra-driver-extras:$cassandraVersion")

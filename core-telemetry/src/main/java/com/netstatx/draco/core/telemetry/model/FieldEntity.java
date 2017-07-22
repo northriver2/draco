@@ -1,13 +1,15 @@
 package com.netstatx.draco.core.telemetry.model;
 
-import com.datastax.driver.mapping.annotations.Column;
-import com.datastax.driver.mapping.annotations.PartitionKey;
-import com.datastax.driver.mapping.annotations.Table;
 import com.netstatx.draco.core.telemetry.data.Field;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * @author wangle<thisiswangle@gmail.com>
@@ -16,23 +18,27 @@ import lombok.ToString;
 @Builder
 @ToString
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "fields")
+@Table(
+        name = "fields",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames={"packet_id", "fieldIndex"}),
+                @UniqueConstraint(columnNames={"packet_id", "fieldKey"}),
+        }
+)
 public class FieldEntity extends BaseUuidEntity<Field> {
-    @PartitionKey
-    @Column
+    @Id
     private Long id;
 
-    @PartitionKey(value = 1)
-    @Column(name = "packet_id")
+    @Column(name = "packet_id", nullable = false)
     private String packetId;
 
-    @Column(name = "field_id")
+    @Column(name = "field_id", nullable = false)
     private String fieldName;
 
-    @Column(name = "field_index")
+    @Column(name = "field_index", nullable = false)
     private Integer fieldIndex;
 
-    @Column(name = "field_key")
+    @Column(name = "field_key", nullable = false)
     private String fieldKey;
 
     @Override

@@ -1,4 +1,4 @@
-package com.netstatx.draco.core.telemetry.dao;
+package com.netstatx.draco.core.telemetry.store;
 
 import com.datastax.driver.core.CodecRegistry;
 import com.datastax.driver.core.ConsistencyLevel;
@@ -6,7 +6,6 @@ import com.datastax.driver.core.Session;
 import com.datastax.driver.core.TypeCodec;
 import com.datastax.driver.core.exceptions.CodecNotFoundException;
 import com.netstatx.draco.core.telemetry.config.cassandra.CassandraCluster;
-import com.netstatx.draco.core.telemetry.model.PacketEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -27,7 +26,6 @@ public abstract class BaseCassandraDao {
             defaultReadLevel = cluster.getDefaultReadConsistencyLevel();
             defaultWriteLevel = cluster.getDefaultWriteConsistencyLevel();
             CodecRegistry registry = session.getCluster().getConfiguration().getCodecRegistry();
-            registerCodecIfNotFound(registry, new PacketEntity.StatusCodec());
         }
         return session;
     }

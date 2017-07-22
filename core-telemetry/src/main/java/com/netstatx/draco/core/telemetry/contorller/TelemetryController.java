@@ -1,6 +1,5 @@
 package com.netstatx.draco.core.telemetry.contorller;
 
-import com.google.common.collect.Lists;
 import com.netstatx.draco.core.telemetry.data.Field;
 import com.netstatx.draco.core.telemetry.data.Packet;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +12,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class TelemetryController extends BaseController {
-    @GetMapping(path = "/devices/{devicesId}/telemetry")
-    public List getTelemetryByDeviceId(Long deviceId) {
-        return Lists.newArrayList();
-    }
-
     @PostMapping(path = "/packets")
     public Packet createPacket(@RequestBody Packet packet) {
         return this.packetService.savePacket(packet);
