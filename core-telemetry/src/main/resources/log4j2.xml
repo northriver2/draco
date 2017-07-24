@@ -41,9 +41,9 @@
     <Loggers>
         <Root level="INFO">
             <AppenderRef ref="Console"/>
-            <appender-ref ref="RollingFileInfo"/>
-            <appender-ref ref="RollingFileWarn"/>
-            <appender-ref ref="RollingFileError"/>
+            <AppenderRef ref="RollingFileInfo"/>
+            <AppenderRef ref="RollingFileWarn"/>
+            <AppenderRef ref="RollingFileError"/>
         </Root>
     </Loggers>
 </Configuration>

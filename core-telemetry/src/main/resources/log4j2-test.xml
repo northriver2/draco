@@ -48,16 +48,15 @@
     </Appenders>
 
     <Loggers>
-        <logger name="org.springframework" level="INFO"/>
-        <logger name="org.jboss" level="INFO"/>
-        <logger name="org.hibernate" level="INFO"/>
-        <logger name="org.xnio" level="INFO"/>
-        <Root level="DEBUG">
+        <logger name="com.netstatx.draco" level="DEBUG">
             <AppenderRef ref="Console"/>
-            <appender-ref ref="RollingFileDebug"/>
-            <appender-ref ref="RollingFileInfo"/>
-            <appender-ref ref="RollingFileWarn"/>
-            <appender-ref ref="RollingFileError"/>
+        </logger>
+
+        <Root level="INFO">
+            <AppenderRef ref="RollingFileDebug"/>
+            <AppenderRef ref="RollingFileInfo"/>
+            <AppenderRef ref="RollingFileWarn"/>
+            <AppenderRef ref="RollingFileError"/>
         </Root>
     </Loggers>
 </Configuration>
