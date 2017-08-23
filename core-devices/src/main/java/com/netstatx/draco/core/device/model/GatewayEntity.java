@@ -1,43 +1,48 @@
 package com.netstatx.draco.core.device.model;
 
 import com.netstatx.draco.core.device.config.UuidGeneratorConfig;
-import com.netstatx.draco.core.device.data.Device;
+import com.netstatx.draco.core.device.data.Gateway;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
 
-
 /**
- * @author wangle<thisiswangle@gmail.com>
+ * @author songwb<songwb@aliyun.com>
  */
 @Data
 @ToString
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "device")
-public class DeviceEntity extends BaseUuidEntity<Device> {
+@Table(name = "gateway")
+public class GatewayEntity extends BaseUuidEntity<Gateway> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @Column(name = "device_code")
-    private String deviceCode;
-    @Column(name = "device_name")
-    private String deviceName;
+    @Column(name = "gateway_code")
+    private String gatewayCode;
+    @Column(name = "gateway_name")
+    private String gatewayName;
+    @Column(name = "gateway_key")
+    private String gatewayKey;
+    @Column(name = "gateway_secret")
+    private String gatewaySecret;
+    @Column(name = "description")
+    private String description;
     @Column(name = "product_id")
     private Long productId;
-    @Column(name = "gateway_id")
-    private Long gatewayId;
+    @Column(name = "ip_address")
+    private String ipAddress;
     @Column(name = "enabled")
     private boolean enabled;
 
-    public DeviceEntity() {
+    public GatewayEntity() {
     }
 
     @Override
-    public Device toData() {
+    public Gateway toData() {
         return null;
     }
 
@@ -45,5 +50,4 @@ public class DeviceEntity extends BaseUuidEntity<Device> {
     public Long generateId() {
         return UuidGeneratorConfig.getUUID();
     }
-
 }

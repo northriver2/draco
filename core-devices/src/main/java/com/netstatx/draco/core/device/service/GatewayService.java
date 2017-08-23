@@ -1,7 +1,7 @@
 package com.netstatx.draco.core.device.service;
 
-import com.netstatx.draco.core.device.dao.DeviceDao;
-import com.netstatx.draco.core.device.model.DeviceEntity;
+import com.netstatx.draco.core.device.dao.GatewayDao;
+import com.netstatx.draco.core.device.model.GatewayEntity;
 import com.netstatx.draco.core.device.model.ProductMessageTypeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -15,33 +15,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author wangle<thisiswangle@gmail.com>
+ * @author songwb<songwb@aliyun.com>
  */
 @Service
-public class DeviceService {
+public class GatewayService {
 
     @Autowired
-    private DeviceDao deviceDao;
-
+    private GatewayDao gatewayDao;
     @Autowired
     private ProductMessageTypeService msgService;
 
-    public DeviceEntity findDeviceById(Long deviceId) {
-        return deviceDao.findOne(deviceId);
+    public GatewayEntity findGatewayById(Long gatewayId) {
+        return gatewayDao.findOne(gatewayId);
     }
 
-    public List<DeviceEntity> findByCondition(String tag, Long productId, Long gatewayId) {
-        List<DeviceEntity> resultList = null;
-        Specification querySpecifi = new Specification<DeviceEntity>() {
+    public List<GatewayEntity> findByCondition(String tag, Long productId, String ipAddress) {
+        List<GatewayEntity> resultList = null;
+        Specification querySpecifi = new Specification<GatewayEntity>() {
             @Override
-            public Predicate toPredicate(Root<DeviceEntity> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+            public Predicate toPredicate(Root<GatewayEntity> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
 
                 List<Predicate> predicates = new ArrayList<>();
                 if (tag != null && !tag.trim().equals("")) {
-                    predicates.add(criteriaBuilder.like(root.get("deviceName"), "%" + tag + "%"));
+                    predicates.add(criteriaBuilder.like(root.get("gatewayName"), "%" + tag + "%"));
                 }
-                if (gatewayId != null && gatewayId > 0) {
-                    predicates.add(criteriaBuilder.equal(root.get("gatewayId"), gatewayId));
+                if (ipAddress != null && !ipAddress.trim().equals("")) {
+                    predicates.add(criteriaBuilder.equal(root.get("ipAddress"), ipAddress));
                 }
                 if (productId != null && productId > 0) {
                     predicates.add(criteriaBuilder.equal(root.get("productId"), productId));
@@ -51,24 +50,29 @@ public class DeviceService {
             }
         };
 
-        return deviceDao.findAll(querySpecifi);
+        return gatewayDao.findAll(querySpecifi);
     }
 
-    public DeviceEntity saveDevice(DeviceEntity deviceEntity) {
-        return deviceDao.save(deviceEntity);
+    public GatewayEntity saveGateway(GatewayEntity GatewayEntity) {
+        return gatewayDao.save(GatewayEntity);
     }
 
-    public void deleteDevice(Long id) {
-        deviceDao.delete(id);
+    public void deleteGateway(Long id) {
+        gatewayDao.delete(id);
+    }
+
+    public boolean validate(Long id, String authKey, String authSecret) {
+        GatewayEntity de = findGatewayById(id);
+        return de.getGatewayKey() == authKey && de.getGatewaySecret() == authSecret;
     }
 
     public List<String> findAllTopic(Long id) {
-        DeviceEntity de = findDeviceById(id);
+        GatewayEntity de = findGatewayById(id);
         List<ProductMessageTypeEntity> lstM = msgService.findByCondition(null, de.getProductId(), null);
         if (lstM != null && lstM.size() > 0) {
             List<String> ret = new ArrayList<>();
             for (ProductMessageTypeEntity me : lstM) {
-                ret.add(de.getGatewayId() + "/" + de.getProductId() + "/" + de.getId() + "/" + me.getMessageCode());
+                ret.add(de.getId() + "/" + me.getMessageCode());
             }
             return ret;
         }

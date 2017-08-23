@@ -13,5 +13,5 @@ eureka:
       snowflake.port: ${snowflake.port}
   client:
     service-url:
-      defaultZone: ${DEFAULT-ZONE:http://discovery:8761/eureka/}
+      defaultZone: ${DEFAULT-ZONE:http://127.0.0.1:8761/eureka/}
 

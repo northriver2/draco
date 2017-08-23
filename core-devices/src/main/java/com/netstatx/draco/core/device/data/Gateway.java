@@ -14,11 +14,13 @@ import lombok.ToString;
 @Builder
 @ToString
 @EqualsAndHashCode
-public class Device implements BaseData {
+public class Gateway implements BaseData {
     private Long id;
-    private String deviceCode;
-    private String deviceName;
+    private String gatewayCode;
+    private String gatewayName;
+    private String gatewayKey;
+    private String gatewaySecret;
+    private String gatewayDescription;
     private Long productId;
-    private Long gatewayId;
-    private boolean enabled;
+    private String ipAddress;
 }
